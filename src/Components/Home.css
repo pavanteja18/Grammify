@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  gap: 2rem;
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: 700;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.prompts {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+input {
+  width: 600px;
+  background-color: rgb(237, 237, 238);
+  padding: 10px;
+  border: 0;
+  border-radius: 20px;
+  color: black;
+}
+
+.inner-wrapper {
+  background-color: rgb(237, 237, 238);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 5px 15px 5px 5px;
+  border-radius: 20px;
+}
+
+.content {
+  background-color: rgba(179, 181, 184, 0.24);
+  padding: 20px;
+  border-radius: 20px;
+  min-width: 680px;
+  margin-top: 10px;
+  font-size: 13px;
+  min-height: 200px;
+  color: gray !important;
+}
+
+.clipboard {
+  display: flex !important;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.clipboard-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  align-self: flex-end;
+  background-color: rgb(128, 128, 128);
+  color: white !important;
+  border-radius: 50%;
+  width: 13px;
+  height: 13px;
+  padding: 10px;
+}
+
+.clipboard-content:hover {
+  cursor: pointer;
+  background-color: rgb(187, 183, 183);
+  color: rgba(88, 88, 88, 0.692);
+}
