@@ -90,7 +90,7 @@ const Home = () => {
         <div className="container">
           <div className="title">
             <h1>
-              <span className="background-span">GRAM</span>MIFY..
+              <span className="background-span">GRAM</span>MIFFY..
               <FontAwesomeIcon icon={faBarcode} fade />
             </h1>
           </div>
