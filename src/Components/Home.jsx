@@ -55,15 +55,15 @@ const Home = () => {
                 // transition: "all 0.3s ease-in-out",
               }
             }
-            className="highlight-word"
+            // className="highlight-word"
           >
             {word + " "}
           </span>
         );
       }
       return (
-        <span key={index} style={{ marginRight: "4px" }}>
-          {word}
+        <span key={index} style={{}}>
+          {word + " "}
         </span>
       );
     });
@@ -117,27 +117,30 @@ const Home = () => {
               </div>
             </div>
           </div>
-          {isloading && <div className="loader"></div>}
-          {output && (
-            <div className="output">
-              <h5>The Corrected grammar is:</h5>
-              <div className="content">
-                <p>{highlightDifferences(input, resultData)}</p>
-                <div className="clipboard" onClick={setCopied}>
-                  {isCopied ? (
-                    <FontAwesomeIcon
-                      icon={faClipboardCheck}
-                      className="clipboard-content"
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faClipboard}
-                      className="clipboard-content"
-                    />
-                  )}
+          {isloading ? (
+            <div className="loader"></div>
+          ) : (
+            output && (
+              <div className="output">
+                <h5>The Corrected grammar is:</h5>
+                <div className="content">
+                  <p>{highlightDifferences(input, resultData)}</p>
+                  <div className="clipboard" onClick={setCopied}>
+                    {isCopied ? (
+                      <FontAwesomeIcon
+                        icon={faClipboardCheck}
+                        className="clipboard-content"
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faClipboard}
+                        className="clipboard-content"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            )
           )}
         </div>
       </div>

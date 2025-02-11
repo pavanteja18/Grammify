@@ -38,6 +38,11 @@ input {
   border: 0;
   border-radius: 20px;
   color: black;
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: bold;
+  opacity: 0.75;
+  font-size: 0.9rem;
+  height: min-content;
 }
 
 .inner-wrapper {
@@ -61,7 +66,8 @@ input {
 }
 
 .content > p {
-  flex-wrap: wraps;
+  flex-wrap: wrap;
+  font-size: 0.925rem;
 }
 
 .clipboard {
@@ -202,47 +208,103 @@ input {
   border-radius: 5px;
 }
 
+/* HTML:  */
 .loader {
   width: 45px;
-  aspect-ratio: 1;
-  --c: no-repeat repeating-linear-gradient(90deg, #000 0 20%, #0000 0 40%);
-  background: var(--c), var(--c), var(--c), var(--c);
-  background-size: 100% 26%;
-  animation: l22 1.5s infinite;
+  aspect-ratio: 0.75;
+  --c: no-repeat linear-gradient(#000000d3 0 0);
+  background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
+  background-size: 20% 50%;
+  animation: l6 1s infinite linear;
+}
+@keyframes l6 {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
+  }
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
+  }
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
+  }
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
+  }
 }
 
-@keyframes l22 {
-  0% {
-    background-position: 0 -20px, 0 -20px, 0 -20px, 0 -20px;
+@media screen and (max-width: 768px) {
+  .container-wrapper {
+    height: 100vh;
   }
-  12.5% {
-    background-position: 0 -20px, 0 -20px, 0 -20px, 0 calc(3 * 100% / 3);
+
+  .container {
+    width: 100vw;
+    padding: 30px;
+
+    gap: 1rem;
+    justify-content: space-between;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.801);
   }
-  25% {
-    background-position: 0 -20px, 0 -20px, 0 calc(2 * 100% / 3),
-      0 calc(3 * 100% / 3);
+
+  .prompts {
+    width: 100vw;
   }
-  37.5% {
-    background-position: 0 -20px, 0 calc(1 * 100% / 3), 0 calc(2 * 100% / 3),
-      0 calc(3 * 100% / 3);
+
+  input {
+    width: 300px;
+    padding: 10px;
+    font-family: "Roboto Mono", sans-serif;
+    font-weight: bold;
+    opacity: 0.75;
+    /* width: 100vw; */
   }
-  45%,
-  50% {
-    background-position: 0 calc(0 * 100% / 3), 0 calc(1 * 100% / 3),
-      0 calc(2 * 100% / 3), 0 calc(3 * 100% / 3);
+
+  .output {
+    width: 100%;
   }
-  62.5% {
-    background-position: 0 calc(0 * 100% / 3), 0 calc(1 * 100% / 3),
-      0 calc(2 * 100% / 3), 0 50px;
+
+  .output > h5 {
+    font-size: 1rem;
   }
-  75% {
-    background-position: 0 calc(0 * 100% / 3), 0 calc(1 * 100% / 3), 0 50px,
-      0 50px;
+
+  .content > p {
+    font-size: 0.95rem;
+    flex-wrap: wrap;
   }
-  87.5% {
-    background-position: 0 calc(0 * 100% / 3), 0 50px, 0 50px, 0 50px;
+
+  .prompt::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: "Roboto Mono", sans-serif;
+    opacity: 0.75; /* Firefox */
+    font-weight: bold;
   }
-  100% {
-    background-position: 0 50px, 0 50px, 0 50px, 0 50px;
+
+  .prompt:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-family: "Roboto Mono", sans-serif;
+  }
+
+  .prompt::-ms-input-placeholder {
+    /* Microsoft Edge */
+    font-family: "Roboto Mono", sans-serif;
+  }
+
+  .content {
+    width: 100%;
+    min-height: fit-content;
+  }
+
+  .clipboard {
+    margin-top: 0;
+    padding: 5px 0;
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  input {
+    width: 100%;
   }
 }
