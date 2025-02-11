@@ -5,84 +5,140 @@ import {
   faBarcode,
   faClipboard,
   faClipboardCheck,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Home.css";
 import { useContext } from "react";
+import { useState } from "react";
 import { Context } from "../context/Context";
 import useClipboard from "react-use-clipboard";
-// import SpeechRecognition, {
-//   useSpeechRecognition,
-// } from "react-speech-recognition";
 
 const Home = () => {
-  const { input, setInput, resultData, onSent } = useContext(Context);
+  //data transfer inputs
+  const { input, setInput, resultData, onSent, isloading } =
+    useContext(Context);
+  //content clipboard inputs
   const [isCopied, setCopied] = useClipboard(resultData);
+  //banner inputs
+  const [banner, setBanner] = useState(false);
+  //trigger for output
+  const [output, setOutput] = useState(false);
+
+  //handling banner operations
+  const handleBanner = () => {
+    //alert("Speech to text feature is not available yet. Please type in the text manually.");
+    setBanner(!banner);
+  };
 
   const handleClick = () => {
     onSent(input);
+    setOutput(true);
   };
 
-  const handleClip = () => {
-    {
-      setCopied;
-    }
+  // Function to compare and highlight differences
+  const highlightDifferences = (original, modified) => {
+    const originalWords = original.split(" ");
+    const modifiedWords = modified.split(" ");
+
+    return modifiedWords.map((word, index) => {
+      if (word !== originalWords[index]) {
+        return (
+          <span
+            key={index}
+            style={
+              {
+                // textDecoration: "underline",
+                // textDecorationColor: "#C4D9FF",
+                // textDecorationThickness: "2px",
+                // marginRight: "4px",
+                // display: "inline-block",
+                // transition: "all 0.3s ease-in-out",
+              }
+            }
+            className="highlight-word"
+          >
+            {word + " "}
+          </span>
+        );
+      }
+      return (
+        <span key={index} style={{ marginRight: "4px" }}>
+          {word}
+        </span>
+      );
+    });
   };
 
   return (
     <>
-      <div className="container">
-        <div className="title">
-          <h1>
-            GRAMMIFY..
-            <FontAwesomeIcon icon={faBarcode} fade />
-          </h1>
+      {banner && (
+        <div className="banner">
+          <h3>
+            Speech feature is not available yet😫. Please type in the text
+            manually.{" "}
+          </h3>
+          <button onClick={handleBanner}>
+            <FontAwesomeIcon
+              icon={faXmark}
+              className="x-mark"
+              style={{ color: "#ffffff" }}
+            />
+          </button>
         </div>
-        <div className="prompts">
-          <div className="wrapper">
-            <div className="inner-wrapper">
-              <input
-                onChange={(e) => setInput(e.target.value)}
-                value={input}
-                type="text"
-                className="prompt"
-                placeholder="Enter your text here..."
-              />
-              {/* {startListening ? ( */}
-              <FontAwesomeIcon icon={faMicrophone} />
-              {/* ) : (
-                <FontAwesomeIcon
-                  icon={faMicrophoneSlash}
-                  onClick={SpeechRecognition.stopListening}
+      )}
+      <div className="contanier-wrapper">
+        <div className="container">
+          <div className="title">
+            <h1>
+              <span className="background-span">GRAM</span>MIFY..
+              <FontAwesomeIcon icon={faBarcode} fade />
+            </h1>
+          </div>
+          <div className="prompts">
+            <div className="wrapper">
+              <div className="inner-wrapper">
+                <input
+                  onChange={(e) => setInput(e.target.value)}
+                  value={input}
+                  type="text"
+                  className="prompt"
+                  placeholder="Enter your text here..."
                 />
-              )} */}
-              <a className="div" onClick={handleClick}>
-                <FontAwesomeIcon icon={faPaperPlane} className="search-img" />
-              </a>
+                <a className="mic-btn" onClick={handleBanner}>
+                  <FontAwesomeIcon
+                    className="mic-img"
+                    icon={faMicrophone}
+                    style={{ color: "#a6a6a6" }}
+                  />
+                </a>
+                <a className="send-btn" onClick={handleClick}>
+                  <FontAwesomeIcon icon={faPaperPlane} className="search-img" />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        {/* {transcript.length > 0 ? (
-          <div className="speech-container">{transcript}</div>
-        ) : null} */}
-        <div className="output">
-          <h5>The Corrected grammer is:</h5>
-          <div className="content">
-            <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
-            <div className="clipboard" onClick={setCopied}>
-              {isCopied ? (
-                <FontAwesomeIcon
-                  icon={faClipboardCheck}
-                  className="clipboard-content"
-                />
-              ) : (
-                <FontAwesomeIcon
-                  icon={faClipboard}
-                  className="clipboard-content"
-                  onClick={handleClip}
-                />
-              )}
+          {isloading && <div className="loader"></div>}
+          {output && (
+            <div className="output">
+              <h5>The Corrected grammar is:</h5>
+              <div className="content">
+                <p>{highlightDifferences(input, resultData)}</p>
+                <div className="clipboard" onClick={setCopied}>
+                  {isCopied ? (
+                    <FontAwesomeIcon
+                      icon={faClipboardCheck}
+                      className="clipboard-content"
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faClipboard}
+                      className="clipboard-content"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

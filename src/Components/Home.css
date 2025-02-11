@@ -14,6 +14,7 @@
   display: flex;
   justify-content: center;
   font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.795);
 }
 
 .output {
@@ -44,7 +45,7 @@ input {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 5px 15px 5px 5px;
+  padding: 5px 5px 5px 5px;
   border-radius: 20px;
 }
 
@@ -52,18 +53,23 @@ input {
   background-color: rgba(179, 181, 184, 0.24);
   padding: 20px;
   border-radius: 20px;
-  min-width: 680px;
+  width: 702px;
   margin-top: 10px;
   font-size: 13px;
   min-height: 200px;
   color: gray !important;
 }
 
+.content > p {
+  flex-wrap: wraps;
+}
+
 .clipboard {
-  display: flex !important;
+  display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   height: 100%;
+  margin-top: 150px;
 }
 
 .clipboard-content {
@@ -83,4 +89,160 @@ input {
   cursor: pointer;
   background-color: rgb(187, 183, 183);
   color: rgba(88, 88, 88, 0.692);
+}
+
+.mic-img:hover {
+  cursor: pointer;
+}
+
+.highlight-word {
+  position: relative;
+  cursor: pointer; /* Changes cursor to indicate interactivity */
+}
+
+.highlight-word:hover {
+  background-color: rgba(196, 217, 255, 0.5); /* Background with 50% opacity */
+  transform: scale(1); /* Popup animation */
+  text-decoration-thickness: 3px; /* Make underline thicker on hover */
+}
+
+.highlight-word:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px; /* Adds a slight effect to the underline */
+  background-color: #c4d9ff;
+  animation: slide-in 0.3s ease-in-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.send-btn {
+  display: inline-block;
+  color: black;
+  padding: 5px 5px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+  background-color: #1382f0;
+}
+
+.send-btn:hover {
+  /* background-color: #5e60633b; */
+  transform: scale(1.1);
+  transition: 200ms ease-in;
+}
+
+.search-img {
+  color: #3d3838;
+  font-size: 18px;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.979);
+  width: fit-content;
+  height: fit-content;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.banner {
+  background-color: rgba(34, 34, 36, 0.884);
+  height: 35px;
+  font-size: 12px;
+  color: white;
+  font-family: "Roboto Mono", sans-serif;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.banner > button {
+  float: right;
+  background-color: rgb(60 60 62);
+  border: none;
+  color: white;
+  padding: 5px;
+}
+
+.x-mark {
+  width: 15px;
+  height: auto;
+}
+
+.banner > button:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  scale: 1.15;
+  transition: 100ms ease-in;
+}
+
+.background-span {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.795);
+  padding: 0 3px;
+  border-radius: 5px;
+}
+
+.loader {
+  width: 45px;
+  aspect-ratio: 1;
+  --c: no-repeat repeating-linear-gradient(90deg, #000 0 20%, #0000 0 40%);
+  background: var(--c), var(--c), var(--c), var(--c);
+  background-size: 100% 26%;
+  animation: l22 1.5s infinite;
+}
+
+@keyframes l22 {
+  0% {
+    background-position: 0 -20px, 0 -20px, 0 -20px, 0 -20px;
+  }
+  12.5% {
+    background-position: 0 -20px, 0 -20px, 0 -20px, 0 calc(3 * 100% / 3);
+  }
+  25% {
+    background-position: 0 -20px, 0 -20px, 0 calc(2 * 100% / 3),
+      0 calc(3 * 100% / 3);
+  }
+  37.5% {
+    background-position: 0 -20px, 0 calc(1 * 100% / 3), 0 calc(2 * 100% / 3),
+      0 calc(3 * 100% / 3);
+  }
+  45%,
+  50% {
+    background-position: 0 calc(0 * 100% / 3), 0 calc(1 * 100% / 3),
+      0 calc(2 * 100% / 3), 0 calc(3 * 100% / 3);
+  }
+  62.5% {
+    background-position: 0 calc(0 * 100% / 3), 0 calc(1 * 100% / 3),
+      0 calc(2 * 100% / 3), 0 50px;
+  }
+  75% {
+    background-position: 0 calc(0 * 100% / 3), 0 calc(1 * 100% / 3), 0 50px,
+      0 50px;
+  }
+  87.5% {
+    background-position: 0 calc(0 * 100% / 3), 0 50px, 0 50px, 0 50px;
+  }
+  100% {
+    background-position: 0 50px, 0 50px, 0 50px, 0 50px;
+  }
 }
